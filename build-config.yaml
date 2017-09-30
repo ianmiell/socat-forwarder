@@ -5,6 +5,10 @@ metadata:
     app: socat-forwarder
   name: socat-forwarder
 spec:
+  output:
+    to:
+      kind: "ImageStreamTag"
+      name: "socat-forwarder:latest"
   resources: {}
   source:
     git:

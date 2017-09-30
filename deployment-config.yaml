@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: socat-forwarder
+spec:
+  replicas: 1
+  selector:
+    deployment-config.name: socat-forwarder
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        deployment-config.name: socat-forwarder
+    spec:
+      containers:
+        - name: socat-forwarder
+          image: centos:7
+    imageChangeParams:
+      triggers:
+      - type: ImageChange
+        imageChangeParams:
+          automatic: true
+          from:
+            kind: ImageStreamTag
+            name: socat-forwarder:latest
+      containerNames:
+        - "socat-forwarder"
+  test: false
+  triggers: []
