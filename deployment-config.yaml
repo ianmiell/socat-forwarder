@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - image: socat-forwarder:latest
-        command: ["/forwarder.sh","80","bbc.co.uk:80"]
+        command: ["/forwarder.sh","8080","bbc.co.uk:80"]
         imagePullPolicy: Always
         name: socat-forwarder
         resources: {}
